@@ -31,9 +31,6 @@ public class Product {
     @Column(nullable = false, length = 40, columnDefinition="nvarchar(40)")
     private String productName;
 
-    @Column(nullable = false)
-    private Integer supplierId;
-
     @Column(nullable = true, columnDefinition="Decimal(12,2) default '0'")
     private Double unitPrice;
 
@@ -43,6 +40,6 @@ public class Product {
     @Column(nullable = false, columnDefinition="bit default '0'")
     private Boolean isDiscontinued;
 
-    @Column(nullable = false, length = 400)
+    @Column(nullable = true, length = 400)
     private String imagem;
 }
