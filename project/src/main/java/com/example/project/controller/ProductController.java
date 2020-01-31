@@ -1,5 +1,6 @@
 package com.example.project.controller;
 
+import java.io.FileNotFoundException;
 import java.util.List;
 import javax.validation.Valid;
 import com.example.project.domain.dto.request.ProductRequest;
@@ -18,7 +19,6 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.bind.annotation.PutMapping;
 
-
 @RestController
 @RequestMapping("/product")
 public class ProductController {
@@ -32,8 +32,8 @@ public class ProductController {
 	}
 
 	@GetMapping(value = "/{id}")
-    public ResponseEntity<Product> getById(@PathVariable Integer id) {
-         return ResponseEntity.ok(productService.findById(id));
+	public ResponseEntity<Product> getById(@PathVariable Integer id) {
+		return ResponseEntity.ok(productService.findById(id));
 	}
 
 	@PutMapping(value = "/upload/{id}")
@@ -43,8 +43,10 @@ public class ProductController {
 		Product p = productService.putImagem(id, s);
 		return ResponseEntity.ok(p);
 	}
-	
-	
-	
+
+	@PutMapping(value = "/upload_Excel")
+	public void criar() throws FileNotFoundException {
+	productService.grava(productService.criar());
+	}
 
 }
